@@ -1,7 +1,16 @@
 "use strict";
-const ExtraerData = () => {
+const findResponse = (Qtitle, responses) => {
+    var _a;
+    return (_a = responses.find((x) => x.getItem().getTitle() == Qtitle)) ===
+        null || _a === void 0
+        ? void 0
+        : _a.getResponse().toString();
+};
+const ExtraerData = (o) => {
+    const response = o.response.getItemResponses();
+    const preguntaNombreCompleto = findResponse("Nombre Completo", response);
     const folder = DriveApp.getFolderById("1zc9THoRuJOCzUAvbj9XiP_yET7l5BxX-");
-    const folder_container = DriveApp.createFolder(`${'hola'} - ${'hola'} - ${'hola'}`);
+    const folder_container = DriveApp.createFolder(`${preguntaNombreCompleto}`);
     folder_container.moveTo(folder);
 };
 const generateTrigger = () => {
